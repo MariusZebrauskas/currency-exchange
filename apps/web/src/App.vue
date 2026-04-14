@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import { quoteService } from '@/services/quoteService';
 import type { QuoteResponse } from '@/schemas/quote.schema';
 
-const currencies = ['USD', 'EUR', 'GBP', 'ILS'];
+type Currency = 'USD' | 'EUR' | 'GBP' | 'ILS';
 
-const baseCurrency = ref('EUR');
-const quoteCurrency = ref('USD');
+const currencies: Currency[] = ['USD', 'EUR', 'GBP', 'ILS'];
+
+const baseCurrency = ref<Currency>('EUR');
+const quoteCurrency = ref<Currency>('USD');
 const baseAmountInput = ref('');
 const result = ref<QuoteResponse | null>(null);
 const loading = ref(false);
@@ -33,12 +35,12 @@ const fetchQuote = async () => {
 
   try {
     result.value = await quoteService.getQuote({
-      baseCurrency: baseCurrency.value as any,
-      quoteCurrency: quoteCurrency.value as any,
+      baseCurrency: baseCurrency.value,
+      quoteCurrency: quoteCurrency.value,
       baseAmount: amountCents,
     });
-  } catch (e: any) {
-    error.value = e.message;
+  } catch (e) {
+    error.value = e instanceof Error ? e.message : 'Unknown error';
     result.value = null;
   } finally {
     loading.value = false;
