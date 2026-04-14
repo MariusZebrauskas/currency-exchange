@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { quoteService } from '@/services/quoteService';
-import type { QuoteResponse } from '@/schemas/quote.schema';
-import Select from '@/components/Select.vue';
+import { ref, watch } from "vue";
+import { quoteService } from "@/services/quoteService";
+import type { QuoteResponse } from "@/schemas/quote.schema";
+import Select from "@/components/Select.vue";
 
-type Currency = 'USD' | 'EUR' | 'GBP' | 'ILS';
+type Currency = "USD" | "EUR" | "GBP" | "ILS";
 
-const currencies: Currency[] = ['USD', 'EUR', 'GBP', 'ILS'];
+const currencies: Currency[] = ["USD", "EUR", "GBP", "ILS"];
 
-const baseCurrency = ref<Currency>('EUR');
-const quoteCurrency = ref<Currency>('USD');
-const baseAmountInput = ref('');
+const baseCurrency = ref<Currency>("EUR");
+const quoteCurrency = ref<Currency>("USD");
+const baseAmountInput = ref("");
 const result = ref<QuoteResponse | null>(null);
 const loading = ref(false);
 const error = ref<string | null>(null);
@@ -19,7 +19,7 @@ let debounceTimer: ReturnType<typeof setTimeout>;
 
 const fetchQuote = async () => {
   const amountCents = Math.round(parseFloat(baseAmountInput.value) * 100);
-  
+
   if (isNaN(amountCents) || amountCents <= 0) {
     result.value = null;
     return;
@@ -41,7 +41,7 @@ const fetchQuote = async () => {
       baseAmount: amountCents,
     });
   } catch (e) {
-    error.value = e instanceof Error ? e.message : 'Unknown error';
+    error.value = e instanceof Error ? e.message : "Unknown error";
     result.value = null;
   } finally {
     loading.value = false;
@@ -56,8 +56,8 @@ const onInput = () => {
 watch([baseCurrency, quoteCurrency], fetchQuote);
 
 const formatCurrency = (cents: number, currency: string) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
     currency: currency,
   }).format(cents / 100);
 };
@@ -74,19 +74,28 @@ const formatCurrency = (cents: number, currency: string) => {
       <div class="input-group">
         <div class="label">Amount</div>
         <div class="amount-input-wrapper">
-          <input 
-            v-model="baseAmountInput" 
-            type="number" 
-            step="0.01" 
+          <input
+            v-model="baseAmountInput"
+            type="number"
+            step="0.01"
             placeholder="0.00"
             name="baseAmount"
             @input="onInput"
           />
-          <Select v-model="baseCurrency" :options="currencies" name="baseCurrency" />
+          <Select
+            v-model="baseCurrency"
+            :options="currencies"
+            name="baseCurrency"
+          />
         </div>
       </div>
 
-      <Select v-model="quoteCurrency" :options="currencies" label="To" name="quoteCurrency" />
+      <Select
+        v-model="quoteCurrency"
+        :options="currencies"
+        label="To"
+        name="quoteCurrency"
+      />
 
       <div v-if="loading" class="status-box loading">
         Fetching latest rates...
@@ -115,7 +124,7 @@ const formatCurrency = (cents: number, currency: string) => {
   max-width: 400px;
   padding: 32px;
   border-radius: var(--radius);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border);
 }
 
@@ -153,8 +162,15 @@ const formatCurrency = (cents: number, currency: string) => {
 }
 
 .amount-input-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 9fr 3fr;
   gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .amount-input-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 input {
@@ -164,7 +180,6 @@ input {
   font-size: 16px;
   outline: none;
   transition: border-color 0.2s;
-  flex: 1;
   min-width: 0;
 }
 
