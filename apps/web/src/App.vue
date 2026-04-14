@@ -2,6 +2,7 @@
 import { ref, watch } from 'vue';
 import { quoteService } from '@/services/quoteService';
 import type { QuoteResponse } from '@/schemas/quote.schema';
+import SelectInput from '@/components/SelectInput.vue';
 
 type Currency = 'USD' | 'EUR' | 'GBP' | 'ILS';
 
@@ -80,17 +81,13 @@ const formatCurrency = (cents: number, currency: string) => {
             placeholder="0.00"
             @input="onInput"
           />
-          <select v-model="baseCurrency">
-            <option v-for="c in currencies" :key="c" :value="c">{{ c }}</option>
-          </select>
+          <SelectInput v-model="baseCurrency" :options="currencies" />
         </div>
       </div>
 
       <div class="input-group">
         <label>To</label>
-        <select v-model="quoteCurrency" class="full-select">
-          <option v-for="c in currencies" :key="c" :value="c">{{ c }}</option>
-        </select>
+        <SelectInput v-model="quoteCurrency" :options="currencies" />
       </div>
 
       <div v-if="loading" class="status-box loading">
@@ -154,25 +151,18 @@ const formatCurrency = (cents: number, currency: string) => {
   gap: 8px;
 }
 
-input, select {
+input {
   padding: 12px;
   border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 16px;
   outline: none;
   transition: border-color 0.2s;
-}
-
-input:focus, select:focus {
-  border-color: var(--secondary);
-}
-
-input {
   flex: 1;
 }
 
-.full-select {
-  width: 100%;
+input:focus {
+  border-color: var(--secondary);
 }
 
 .status-box {
