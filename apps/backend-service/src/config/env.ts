@@ -13,8 +13,6 @@ const schema = z.object({
   CORS_ORIGIN: z.string().default('*'),
   CACHE_TTL_MS: z.coerce.number().int().positive().default(3_600_000),
   FX_TIMEOUT_MS: z.coerce.number().int().positive().default(5_000),
-  RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive().default(60_000),
-  RATE_LIMIT_MAX: z.coerce.number().int().positive().default(120),
   LOG_LEVEL: z.string().default('info'),
   TRUST_PROXY: z.coerce.number().int().min(0).max(3).default(0),
 });
