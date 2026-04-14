@@ -55,13 +55,29 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236c7378' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
+  background-size: 12px 8px;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+select:focus {
+  border-color: var(--secondary);
+}
+
+option {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-select:focus {
-  border-color: var(--secondary);
+@media (max-width: 400px) {
+  select {
+    font-size: 14px;
+    padding: 10px 28px 10px 10px;
+    background-position: right 8px center;
+  }
 }
 </style>

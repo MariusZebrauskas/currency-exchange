@@ -231,4 +231,27 @@ input:focus {
   font-weight: 700;
   color: var(--primary);
 }
+
+@media (max-width: 400px) {
+  .exchange-card {
+    padding: 20px;
+  }
+
+  .card-header h2 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .quote-amount {
+    font-size: 24px;
+  }
+}
 </style>
