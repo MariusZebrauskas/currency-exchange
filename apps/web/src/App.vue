@@ -121,8 +121,7 @@ const formatCurrency = (cents: number, currency: string) => {
 <style scoped>
 .exchange-card {
   background: var(--card-bg);
-  width: 100%;
-  max-width: 400px;
+
   padding: 32px;
   border-radius: var(--radius);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -154,7 +153,6 @@ const formatCurrency = (cents: number, currency: string) => {
 }
 
 .input-group .label {
-  display: block;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -185,11 +183,8 @@ input {
   border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 16px;
-  outline: none;
   transition: border-color 0.2s;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 input:focus {
@@ -248,10 +243,6 @@ input:focus {
   input {
     font-size: 14px;
     padding: 10px;
-  }
-
-  .quote-amount {
-    font-size: 24px;
   }
 }
 </style>
