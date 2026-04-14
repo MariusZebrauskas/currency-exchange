@@ -21,6 +21,7 @@ const generatedName = useId();
     <select 
       :value="modelValue"
       :name="name || generatedName"
+      :title="String(modelValue)"
       @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value as T)"
     >
       <option v-for="option in options" :key="option" :value="option">{{ option }}</option>
@@ -55,6 +56,9 @@ select {
   background-repeat: no-repeat;
   background-position: right 12px center;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 select:focus {

@@ -80,6 +80,7 @@ const formatCurrency = (cents: number, currency: string) => {
             step="0.01"
             placeholder="0.00"
             name="baseAmount"
+            :title="baseAmountInput"
             @input="onInput"
           />
           <Select
@@ -173,6 +174,12 @@ const formatCurrency = (cents: number, currency: string) => {
   }
 }
 
+@media (max-width: 400px) {
+  .amount-input-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
 input {
   padding: 12px;
   border: 1px solid var(--border);
@@ -181,6 +188,8 @@ input {
   outline: none;
   transition: border-color 0.2s;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 input:focus {
