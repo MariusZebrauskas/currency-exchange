@@ -1,20 +1,26 @@
 <script setup lang="ts" generic="T extends string | number">
+import { useId } from 'vue';
+
 defineProps<{
   modelValue: T;
   options: T[];
   label?: string;
+  name?: string;
 }>();
 
 defineEmits<{
   'update:modelValue': [value: T];
 }>();
+
+const generatedName = useId();
 </script>
 
 <template>
   <div class="select-wrapper">
-    <label v-if="label">{{ label }}</label>
+    <div v-if="label" class="label">{{ label }}</div>
     <select 
-      :value="modelValue" 
+      :value="modelValue"
+      :name="name || generatedName"
       @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value as T)"
     >
       <option v-for="option in options" :key="option" :value="option">{{ option }}</option>
@@ -27,7 +33,7 @@ defineEmits<{
   width: 100%;
 }
 
-label {
+.label {
   display: block;
   font-size: 12px;
   font-weight: 600;
@@ -48,6 +54,7 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236c7378' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
+  min-width: 0;
 }
 
 select:focus {

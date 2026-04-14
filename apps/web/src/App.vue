@@ -72,20 +72,21 @@ const formatCurrency = (cents: number, currency: string) => {
 
     <div class="card-body">
       <div class="input-group">
-        <label>Amount</label>
+        <div class="label">Amount</div>
         <div class="amount-input-wrapper">
           <input 
             v-model="baseAmountInput" 
             type="number" 
             step="0.01" 
             placeholder="0.00"
+            name="baseAmount"
             @input="onInput"
           />
-          <Select v-model="baseCurrency" :options="currencies" />
+          <Select v-model="baseCurrency" :options="currencies" name="baseCurrency" />
         </div>
       </div>
 
-      <Select v-model="quoteCurrency" :options="currencies" label="To" />
+      <Select v-model="quoteCurrency" :options="currencies" label="To" name="quoteCurrency" />
 
       <div v-if="loading" class="status-box loading">
         Fetching latest rates...
@@ -142,7 +143,7 @@ const formatCurrency = (cents: number, currency: string) => {
   margin-bottom: 20px;
 }
 
-.input-group label {
+.input-group .label {
   display: block;
   font-size: 12px;
   font-weight: 600;
@@ -164,6 +165,7 @@ input {
   outline: none;
   transition: border-color 0.2s;
   flex: 1;
+  min-width: 0;
 }
 
 input:focus {
