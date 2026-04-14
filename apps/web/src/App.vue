@@ -153,7 +153,7 @@ const formatCurrency = (cents: number, currency: string) => {
 
 .amount-input-wrapper {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 input {

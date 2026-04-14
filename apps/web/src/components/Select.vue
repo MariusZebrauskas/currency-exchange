@@ -38,12 +38,16 @@ label {
 
 select {
   width: 100%;
-  padding: 12px;
+  padding: 12px 32px 12px 12px;
   border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 16px;
   outline: none;
   transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236c7378' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
 }
 
 select:focus {
