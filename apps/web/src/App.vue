@@ -121,7 +121,6 @@ const formatCurrency = (cents: number, currency: string) => {
 <style scoped>
 .exchange-card {
   background: var(--card-bg);
-
   padding: 32px;
   border-radius: var(--radius);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
