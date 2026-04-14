@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue';
 import { quoteService } from '@/services/quoteService';
 import type { QuoteResponse } from '@/schemas/quote.schema';
-import SelectInput from '@/components/SelectInput.vue';
+import Select from '@/components/Select.vue';
 
 type Currency = 'USD' | 'EUR' | 'GBP' | 'ILS';
 
@@ -81,14 +81,11 @@ const formatCurrency = (cents: number, currency: string) => {
             placeholder="0.00"
             @input="onInput"
           />
-          <SelectInput v-model="baseCurrency" :options="currencies" />
+          <Select v-model="baseCurrency" :options="currencies" />
         </div>
       </div>
 
-      <div class="input-group">
-        <label>To</label>
-        <SelectInput v-model="quoteCurrency" :options="currencies" />
-      </div>
+      <Select v-model="quoteCurrency" :options="currencies" label="To" />
 
       <div v-if="loading" class="status-box loading">
         Fetching latest rates...
@@ -131,6 +128,14 @@ const formatCurrency = (cents: number, currency: string) => {
   color: var(--text-muted);
   font-size: 14px;
   margin: 4px 0 24px 0;
+}
+
+.card-body > * {
+  margin-bottom: 20px;
+}
+
+.card-body > *:last-child {
+  margin-bottom: 0;
 }
 
 .input-group {
