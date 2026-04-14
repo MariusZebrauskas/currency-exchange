@@ -7,7 +7,7 @@ const currencies = ['USD', 'EUR', 'GBP', 'ILS'];
 
 const baseCurrency = ref('EUR');
 const quoteCurrency = ref('USD');
-const baseAmountInput = ref('100.00');
+const baseAmountInput = ref('');
 const result = ref<QuoteResponse | null>(null);
 const loading = ref(false);
 const error = ref<string | null>(null);
@@ -58,8 +58,6 @@ const formatCurrency = (cents: number, currency: string) => {
     currency: currency,
   }).format(cents / 100);
 };
-
-onMounted(fetchQuote);
 </script>
 
 <template>
