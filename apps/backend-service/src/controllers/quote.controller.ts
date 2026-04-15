@@ -1,4 +1,3 @@
-import type { Request, Response } from "express";
 import { Router } from "express";
 import { asyncHandler } from "@/middleware/async-handler";
 import { quoteQuerySchema } from "@/schemas/quote.schema";

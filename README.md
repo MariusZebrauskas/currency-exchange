@@ -74,3 +74,39 @@ Once both services are running:
 - Web Interface: http://localhost:5173
 
 Open your browser and navigate to http://localhost:5173 to use the currency exchange widget.
+
+## Code Quality (Optional)
+
+Both projects include ESLint and Prettier configurations for code linting and formatting.
+
+To use these tools:
+
+1. Install the dev dependencies:
+
+```bash
+# In apps/backend-service
+pnpm add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier eslint-config-prettier eslint-plugin-prettier
+```
+
+```bash
+# In apps/web
+pnpm add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-vue
+```
+
+2. Add these scripts to `package.json`:
+
+```json
+"lint": "eslint 'src/**/*.{ts,tsx}'",
+"lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+"format": "prettier --write 'src/**/*.{ts,tsx,json}'"
+```
+
+For web, use `'src/**/*.{ts,tsx,vue}'` pattern.
+
+3. Then run:
+
+```bash
+pnpm lint        # Check for linting errors
+pnpm lint:fix    # Auto-fix linting errors  
+pnpm format      # Format code with Prettier
+```
