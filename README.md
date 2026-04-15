@@ -1,7 +1,5 @@
 # Currency Exchange
 
-## Getting Started
-
 ### Backend Service
 
 1. Navigate to the backend service directory:
@@ -13,7 +11,7 @@ cd apps/backend-service
 2. Install dependencies:
 
 ```bash
-pnpm install
+pnpm i
 ```
 
 3. Create a `.env` file with the following configuration:
@@ -48,7 +46,7 @@ cd apps/web
 2. Install dependencies:
 
 ```bash
-pnpm install
+pnpm i
 ```
 
 3. Create a `.env` file with the following configuration:
